@@ -29,4 +29,14 @@ void main() {
             movie -> System.out.println("Encontrada: " + movie),
             () -> System.out.println("No existe esa película")
     );
+
+    System.out.println("-------------------------------------");
+
+    Usuario fran = new Usuario("fran");
+    Movie spiderman = catalogo.buscarPorTituloOLanzar("Spider-man");
+    fran.agregarWatchlist(catalogo.buscarPorTituloOLanzar("Inception"));
+    fran.marcarComoVista(spiderman);
+
+    System.out.println(fran.getHistorialVistas());
+    System.out.println(fran.getWatchlist());
 }
