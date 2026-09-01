@@ -1,9 +1,8 @@
 void main() {
-    Catalogo catalogo = new Catalogo();
+    List<Movie> peliculas = new MovieCsvLoader().cargarDesdeArchivo("movies.csv");
+    Catalogo catalogo = new Catalogo(peliculas);
 
     System.out.println(catalogo.contarPorGenero());
-
-    System.out.println(catalogo.buscarPorTitulo("Spider-man"));
 
     try {
         catalogo.agregarPelicula(new Movie("Bad Movie", "Drama", 2020, 15.0)); // rating inválido a propósito
@@ -29,4 +28,14 @@ void main() {
             movie -> System.out.println("Encontrada: " + movie),
             () -> System.out.println("No existe esa película")
     );
+
+    System.out.println("-------------------------------------");
+
+    Usuario fran = new Usuario("fran");
+    Movie spiderman = catalogo.buscarPorTituloOLanzar("Spider-man");
+    fran.agregarWatchlist(catalogo.buscarPorTituloOLanzar("Inception"));
+    fran.marcarComoVista(spiderman);
+
+    System.out.println(fran.getHistorialVistas());
+    System.out.println(fran.getWatchlist());
 }

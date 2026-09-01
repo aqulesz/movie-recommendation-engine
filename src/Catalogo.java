@@ -5,14 +5,11 @@ import java.util.stream.Collectors;
 public class Catalogo {
     private Repository<Movie> movieRepository;
 
-    public Catalogo(){
+    public Catalogo(List<Movie> peliculasIniciales){
         movieRepository = new Repository<>();
-        movieRepository.add(new Movie("Spider-man", "Superheroes", 2002, 8));
-        movieRepository.add(new Movie("Toy Story", "Kids", 2004, 7));
-        movieRepository.add(new Movie("Rec", "Horror", 2010, 5));
-        movieRepository.add(new Movie("Batman", "Superheroes", 2012, 9));
-        movieRepository.add(new Movie("Inception", "Mistery", 2009, 8));
-
+        for (Movie m : peliculasIniciales) {
+            movieRepository.add(m);
+        }
     }
 
     public void agregarPelicula(Movie movie) {
